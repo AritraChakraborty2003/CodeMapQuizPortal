@@ -1,4 +1,7 @@
-
+<?php 
+  session_start();
+  session_destroy();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,13 +23,13 @@
                   </div>
                   <form method="post" action="rulesDB.php">
                   <div class="inputFields">
-                     <input type="text" name="name" id="name" class="name inp" placeholder="Enter your name...">
-                     <input type="email" name="email" id="email" class="email inp" placeholder="Enter your email...">
-                     <input type="text" name="college" id="college" class="college inp" placeholder="Enter your college...">
-                     <input type="text" name="branch" id="branch" class="branch inp" placeholder="Enter your branch" >
+                     <input type="text" name="name" id="name" class="name inp" placeholder="Enter your name..." required>
+                     <input type="email" name="email" id="email" class="email inp" placeholder="Enter your email..." required>
+                     <input type="text" name="college" id="college" class="college inp" placeholder="Enter your college..." required>
+                     <input type="text" name="branch" id="branch" class="branch inp" placeholder="Enter your branch" required>
                      <p style="margin-top: 3vmin;">Please choose your favourite programming Language
                         <br>
-                     <input type="radio" id="C" name="fav_language" value="C">
+                     <input type="radio" id="C" name="fav_language" value="C" checked>
                      <label for="C">C</label><br>
                      <input type="radio" id="Java" name="fav_language" value="Java">
                      <label for="Java">Java</label><br>

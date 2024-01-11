@@ -83,7 +83,7 @@
 
 </div>
 <div class="btnHolder" style="margin-top: 3vmin;display: flex; justify-content: center; align-items: center;">
-<button type="button" class="btn-primary" style="font-size:3vmin"><a href="quizpart.php" style="color:white">Let's Play</a></button>
+<button type="button" class="btn-primary" style="font-size:3vmin"><a href="quizpart.php" style="color:white;text-decoration:none">Let's Play</a></button>
 </div>
 
 </body>

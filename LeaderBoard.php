@@ -62,6 +62,11 @@
             </span></p>
         </div>
     </div>
+
+
+    <div class="buttonHolder" style="display:flex;justify-content:center;align-items:center;margin-top:2.5vmin">
+        <button class="btn-primary"><a href="index.php" style="font-size:3vmin;color:white;text-decoration:none">Back</a></button>
+    </div>
 </body>
 </html>
 <style>

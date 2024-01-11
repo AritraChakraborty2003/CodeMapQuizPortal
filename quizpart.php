@@ -25,7 +25,7 @@
       } else {
         echo "0 results";
       }
-      echo $questionArray;
+     
       mysqli_close($conn);
  
 
@@ -136,9 +136,10 @@
             var opt_3=<?php echo json_encode($option3Array); ?>;
             var opt_4=<?php echo json_encode($option4Array); ?>;
             var correct=<?php echo json_encode($correctArray); ?>;
+            //console.log(correct);
             let index=0;
-            console.log(questions);
-            console.log(opt_1);
+            //console.log(questions);
+            //console.log(opt_1);
             let val=1; let time=10;
             let ans=["null","null","null","null","null","null","null","null","null","null"];
             let record=document.getElementById("recordbtn");
@@ -156,12 +157,12 @@
             opt2.innerHTML=opt_2[0];
             opt3.innerHTML=opt_3[0];
             opt4.innerHTML=opt_4[0];
-        
+            let score=0;
 
         function change(){
          
             if(index==9){
-                console.log("Hello Bro");
+               
                 var opt = document.getElementsByName('ans');
                 let res="null";
                 
@@ -171,6 +172,11 @@
                          opt[i].checked=false;
                     }
                 }
+                if(correct[index]==res){
+                    score+=10;
+                }
+                
+                document.cookie = "score_user="+score.toString();
               
                 ans[index++]=res;
                
@@ -189,7 +195,9 @@
                          opt[i].checked=false;
                     }
                 }
-              
+                if(correct[index]==res){
+                    score+=10;
+                }
                 ans[index++]=res;
                 console.log(ans);
                 val++;

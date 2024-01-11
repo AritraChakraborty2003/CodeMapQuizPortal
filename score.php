@@ -3,10 +3,8 @@
    session_start();
    
    $score=60;
-   if($score>50){
-      echo "";
-      
-   }
+   $score1=$_COOKIE["score_user"];
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -35,12 +33,21 @@
 
   <div class="container-fluid main" style="width:100vw;display:flex;justify-content:center;margin-top:15vmin">
    
-      <div class="container-fluid" style="display:flex;justify-content:center;margin-top:4.5vmin">
-         <div  style="height:35vmin;width:35vmin;margin-top:1vmin">"<?php if($score>50) echo '<img src="images/good.jpeg" style="max-width:100%; max-height:100% object-fit:contain">' ?>"
+      <div class="container-fluid" style="overflow:hidden;display:flex;justify-content:center;margin-top:4.5vmin">
+         <div  style="height:31vmin;width:27vmin;margin-top:1vmin;overflow:hidden">"<?php if($score1>=40 && $score1<=50) echo '<img src="images/average.png" style="max-width:100%; max-height:100%; object-fit:contain;">' ;
+                                                                          elseif($score1>50) echo '<img src="images/good.jpeg" style="max-width:100%; max-height:100%; object-fit:contain;">';
+                                                                          else echo '<img src="images/sad.png" style="max-width:100%; max-height:100%; object-fit:contain;">';?>"
          </div>
 
          <div class="scoreText" style="width:65vmin;margin-left:3.5vmin">
-            <p style="font-size:5.15vmin">Wow! <span id="category" style="font-weight:bold;font-size:5.25vmin">Aritra Chakraborty</span> <br>you scored <span id="category" style="font-weight:bold;font-size:5.25vmin">Good</span>  <br>your score is  <?php echo $score."/"."100";"" ?></p>
+            <p style="font-size:5.15vmin"> 
+            "<?php if($score1>=40 && $score1<=50) echo 'Hmmm...' ;
+              elseif($score1>50) echo 'Wow!...';
+              else echo 'oops!';?>"
+            <span id="category" style="font-weight:bold;font-size:5.25vmin"><?php echo $_SESSION["uname"] ?></span> <br>you scored <span id="category" style="font-weight:bold;font-size:5.25vmin">
+            "<?php if($score1>=40 && $score1<=50) echo 'Average' ;
+              elseif($score1>50) echo 'Excellent';
+              else echo 'Poor'; ?>" </span>  <br>your score is  <?php echo $score1."/"."100";"" ?></p>
             <button class="btn-primary"><a style="color:white;text-decoration:none" href="LeaderBoard.php">Leaderboard</a></button>
             <p style="margin-top:2.5vmin">( Please check the the Leaderboard to checkout the topper list )</p>
          </div>
