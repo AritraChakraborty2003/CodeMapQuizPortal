@@ -7,6 +7,7 @@
    $option1Array=array();
    $option2Array=array();
    $option3Array=array();
+
    $option4Array=array();
    $correctArray=array();
     $sql = "SELECT * FROM $language";
@@ -31,104 +32,77 @@
 
     
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quiz Part</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-    
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+   
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 </head>
 <body>
-    <div class="container-fluid" style="margin-top: 3vmin;">
-        <button style="float:right; margin-right: 3vmin;padding:1vmin"><a href="exit.php" style="color:black;text-decoration:none">Exit</a></button>
-    </div>
- 
-    <div class="quizHeader container-fluid " style="margin-top:1.5vmin">
-        <p style="font-size:5vmin; font-weight:bold; text-align:center">Geeks Stage
-        <br><span style="font-weight:100; font-size:2vmin">(QuizDeck the Quiz Platform of CodeMap in collaboration with TechHubBharat)</span>
-
-        </p>
-    </div>
-
-    <div class="imageContainerHolder" style="display:flex;justify-content:center;height:24vmin;">
-    <div class="imageHolder border" style="height:19vmin; width:20vmin; border-radius:10vmin;padding:2.5vmin">
-        <img src="images/codemap.jpeg" style="max-width:100%;min-width:100%;object-fit:contain">
-    </div>
-    <div class="timeDiv" style="border:3px solid black; border-radius: 3.5vmin;margin-left:3.5vmin;margin-top:5.5vmin;height:7vmin; width:7vmin;">
-         <p id="timer" style="margin-left: 1.5vmin; margin-top: 0.45vmin;font-size: 2.75vmin;">20</p>
-    </div>
-</div>
-    <div class="quizHolder" style="margin-top:0.45vmin">
-    
-    
-    <div class="quizSection container ">
-
-     <div class="questionPart" style="display: flex; justify-content: center;">
-        <div class="container QuestionBox " id="question" style="border-radius: 10vmin;">
-                <p class="questionText"  style="margin-left: 3vmin; "><span id="qno">Q1.</span>&nbsp;&nbsp;&nbsp;<span id="questionInput">Who invented Python and what is the invention year ?</span></p>
-        </div>
-    </div>
-
-   <div class="optionBox">
-        <div class="row">
-            <div class="col-lg-6 border option">
-                <div class="optionHolder" style="height:100%;display:flex;align-items:center">
-                
-                <input type="radio" id="opt_1" name="ans" value="a">
-                <label id="opt1" for="opt" style="margin-left:2vmin;font-size:2.5vmin">Guido Von Rossum</label>
-
-            </div>
-            </div>
-            <div class="col-lg-6 border option">
-            <div class="optionHolder" style="height:100%;display:flex;align-items:center">
-                
-                <input type="radio" id="opt_2" name="ans" value="b">
-                <label id="opt2" for="opt_2" style="margin-left:2vmin;font-size:2.5vmin">Tim Berners Lee</label>
-
-            </div>
-            </div>
-        </div>
-    </div>
-    <div class="optionBox">
-        <div class="row">
-            <div class="col-lg-6 border option" style="border:1px solid black">
-            <div class="optionHolder" style="height:100%;display:flex;align-items:center">
-                
-                <input type="radio" id="opt_3" name="ans" value="c">
-                <label id="opt3" for="opt_3" style="margin-left:2vmin;font-size:2.5vmin">Brian Keringham</label>
-
-            </div>
-            </div>
-            <div class="col-lg-6 border option">
-            <div class="optionHolder" style="height:100%;display:flex;align-items:center">
-                
-                <input type="radio" id="opt_4" name="ans" value="d">
-                <label id="opt4" for="opt_4" style="margin-left:2vmin;font-size:2.5vmin">James Gosling</label>
-
-            </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="btn-Holder" style="display: flex; justify-content: center; margin-top: 4vmin;">
-        <button class="btn btn-primary" id="recordbtn" >Submit</button>
-    </div>
-      
-    </div>
-
-   
-       
-    </div>
-
-    <script>
-       
-       
   
+ <div class="backContainer">
+    
+    <div class="background container">
+        <div class="timerContainer" style="display: flex; justify-content:center;;">
+            <div class="borderTimer" style="border: 4px solid white;">
+                    <p class="timeText"  id="timer">25</p>
+            </div>
+        </div>
+        <div class="row" style="margin-top: 3vmin;">
+        <div class="first col-lg-6 ">
+            <div class="text">
+                <p class="questHeader" style="margin-left:2vmin;">Question <span id="qno">1</span>/10</p> 
+            </div>
+            <div class="question">
+                <p id="questionInput" >What invented Python ?</p>
+                
+            </div>
+         </div>
+         <div class="second col-lg-6 ">
+
+                  <div class="container optionHolder" style="  padding-bottom: 4vmin;height: 100%;display: flex;  align-items: center ;flex-direction: column;">
+
+                       <div class="option1 opt"> 
+                        
+                <input type="radio" id="opt_1" name="ans" value="a">
+                <label id="opt1" for="opt" class="optx" style="">Guido Von Rossum</label>
+                       </div>
+                       <div class="option2 opt">      <input type="radio" id="opt_2" name="ans" value="b">
+                        <label id="opt2" for="opt_2"  class="optx"style="">Tim Berners Lee</label>
+                        </div>
+                       <div class="option3 opt"> 
+                              
+                <input type="radio" id="opt_3" name="ans" value="c">
+                <label id="opt3" for="opt_3" class="optx" style="">Brian Keringham</label>
+                       </div>
+                       <div class="option4 opt"> 
+                        <input type="radio" id="opt_4" name="ans" value="d">
+                <label id="opt4" for="opt_4" class="optx" style="">James Gosling</label>
+                    </div>
+
+                     </div>
+         </div>
+
+        </div>
+    </div>
+
+    </div>
+     <script>
+       
+            const date=new Date();
+            var minutes=date.getMinutes();
+            var seconds=date.getSeconds();
+            document.cookie="timeStore="+(minutes*60+seconds).toString()
+            //console.log(minutes*60+seconds);
+
+
             // Access the array elements 
             var questions= <?php echo json_encode($questionArray); ?>;
             var opt_1=<?php echo json_encode($option1Array); ?>;
@@ -136,13 +110,13 @@
             var opt_3=<?php echo json_encode($option3Array); ?>;
             var opt_4=<?php echo json_encode($option4Array); ?>;
             var correct=<?php echo json_encode($correctArray); ?>;
-            //console.log(correct);
+            console.log(correct);
             let index=0;
-            //console.log(questions);
-            //console.log(opt_1);
-            let val=1; let time=10;
+            console.log(questions);
+            console.log(opt_1);
+            let val=1; let time=25;
             let ans=["null","null","null","null","null","null","null","null","null","null"];
-            let record=document.getElementById("recordbtn");
+            //let record=document.getElementById("recordbtn");
             let qno=document.getElementById("qno");
             let timer=document.getElementById("timer");
             let q=document.getElementById("questionInput");
@@ -177,7 +151,7 @@
                 }
                 
                 document.cookie = "score_user="+score.toString();
-              
+               
                 ans[index++]=res;
                
                 val++;
@@ -201,7 +175,7 @@
                 ans[index++]=res;
                 console.log(ans);
                 val++;
-                let qin="Q".concat((val).toString()).concat(".");
+                let qin=((val).toString());
                 qno.innerHTML=qin
                 q.innerHTML=questions[index];
                 opt1.innerHTML=opt_1[index];
@@ -215,13 +189,13 @@
         var functionCall=setInterval(function(){
                 change();
               
-        },10000);
+        },25000);
 
         function timeHandler(){
            
             if(time==0){
              
-                time=10;
+                time=25;
                 timer.innerHTML=time;
                 time--;
                 
@@ -241,72 +215,88 @@
 </body>
 </html>
 
-
-
 <style>
-    
-    .quizSection{
-        padding:3vmin;
+
+*{
+    margin : 0 ; 
+    padding : 0 ; 
+    box-sizing : border-box ; 
+
+}
+body{
+       
+        background-color: rgb(71, 161, 217);
     }
-    .quizHeader{
-        display: flex;
+.background{
+    width:120vmin;
+    color: white;
+    padding-top: 3vmin;
+    padding-bottom: 5.5vmin;
+    background-color: #3F4865  ;
+    border-radius: 3vmin;
+  
+}
+
+.backContainer{
+    display: flex;
         justify-content: center;
-    
         align-items: center;
+        margin-left: 1.5vmin;
+        height: 100vh; width: 97vw;
+}
+.questHeader{
+    font-size: 4vmin;
+}
+#questionInput{
+    font-size: 3.5vmin;
+    margin-left: 2vmin;
+}
+.opt{
+    border-bottom:1px solid white;
+    padding: 2vmin;
+    width: 100%;
+    border-radius:3vmin;
+    margin-top: 2.5vmin;
+}
+@media(max-width:800px){
+    .questHeader,.questText{
+        font-size: 4.5vmin;
     }
-    @media(max-width:901px){
-        .QuestionBox{
-            height:19vmin;
-            border:1px solid grey;
-        }
-        .optionBox{
-            margin-top:3vmin;
-        }
-        .option{
-            height:15vmin;
-            border-radius:10vmin;
-            margin-top:1.5vmin;
-        }
-        .questionText{
-            font-size: 3.15vmin;
-            margin-top: 4vmin;
-        }
+    .qno{
+        font-size: 6.5vmin;
     }
-    @media(min-width:901px){
-        .QuestionBox{
-            height:15vmin;
-            border:1px solid grey;
-           
-        }
-        .optionBox{
-            margin-top:3vmin;
-            
-        }
-        .option{
-            height:15vmin;
-            border-radius:5vmin;
-        }
-        .questionText{
-            font-size: 2.75vmin;
-            margin-top: 4.5vmin;
-        }
+    .optx{
+        font-size: 4.5vmin;
+    }
+    .opt{
+        margin-left: -3.5vmin;
+        margin-top: 4.5vmin;
+    }
+    .borderTimer{
+        height:12vmin;width: 12vmin;
+        border-radius: 6vmin;
+    }
+    .timerContainer{
+        height: 12vmin;
+    }
+    .timeText{
+        margin-top: 1.5vmin;
+        margin-left: 2vmin;
+    }
+ 
+}
+@media(min-width:801px){
+    .borderTimer{
+        height:9vmin;width: 9vmin;
+        border-radius: 4.5vmin;
+    }
+    .timerContainer{
+        height: 7vmin;
+    }
+    .timeText{
+        margin-top: 1.75vmin;
+        margin-left: 2.5vmin;
     }
 
-    #recordbtn{
-        display:none;
-    }
+}
 </style>
-
-
-
-
-
-
-
-
-
-
-
-
-
-

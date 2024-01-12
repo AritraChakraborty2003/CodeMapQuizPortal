@@ -1,13 +1,31 @@
 <?php 
-     include 'connDB.php' ;
+    include 'connDB.php' ;
+   
+    $uid1=$_POST["uid"];
+    $email1=$_POST["email"];
+    $sql1 = "SELECT * FROM registration WHERE uid='$uid1'";
+    $sql2= "SELECT * FROM participants WHERE uid='$uid1' and email='$email1'";
+    $result1 = mysqli_query($conn, $sql1);
+    $result2 = mysqli_query($conn, $sql2);
+    if (mysqli_num_rows($result1)>0) {
+        echo "<script> location.href='index.php'</script>";
+    }
+    elseif (mysqli_num_rows($result2)==0) {
+        echo "<script> location.href='index.php'</script>";
+    }
+    else{
     session_start();
+   
+
     if(isset($_SESSION['uname'])){
         echo "<script> location.href='quizpart.php'</script>";
     }
     else{
          $_SESSION["uname"]=$_POST["name"];
          $_SESSION["email"]=$_POST["email"];
+         $_SESSION["college"]=$_POST["college"];
          $_SESSION["lang"]=$_POST["fav_language"];
+         $_SESSION["uid"]=$_POST["uid"];
     }
 
 
@@ -17,7 +35,7 @@
     $uname=$_POST["name"];
     $email=$_POST["email"];
     $college=$_POST["college"];
-    $branch=$_POST["branch"];
+    $uid=$_POST["uid"];
     $language=$_POST["fav_language"];
 
     $sql = "SELECT * FROM registration";
@@ -26,82 +44,111 @@
     $id=$prev_id+1;
 
 
-    $sql_insert="INSERT INTO registration (`id`, `name`, `email`,`college`,`branch`,`language`)
-    VALUES ($id,'$uname','$email','$college','$branch','$language')";
+    $sql_insert="INSERT INTO registration (`id`, `name`, `email`,`college`,`uid`,`language`)
+    VALUES ($id,'$uname','$email','$college','$uid','$language')";
 
     $result=mysqli_query($conn,$sql_insert);
     if(!$result){
         echo "Data not added Successfully";
     }   
+}
     
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quiz Rules</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+    <title>Rules</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 </head>
 <body>
-    <div class="headerDiv ">
-     <div class="container-fluid headerText">
-        <div class="header">   
-        <h1>
-                Rules
-            </h1>
+        <div class="rulesContainer">
+            <div class="rulesCard">
+                <div class="header">
+                    <p class="headerText" style="text-align: center; color: white;">Rules</p>
+                </div>
+                <div class="rulesBody" style="margin-top: -1vmin; padding-bottom: 3vmin;">
+                     <ol>
+                        <li>As a valued member of codemap please don't be involved in any kind of cheating or plagiarism</li>
+                        <li class="gap">All questions carry 10 marks</li>
+                        <li class="gap">No negative marking on wrong answers</li>
+                        <li class="gap">Questions will automatically change after 30 seconds</li>
+                        <li class="gap">The score will be declared after the end of all 10 questions</li>
+                        <li class="gap">The users will be able to show leaderboard after the end of contest</li>
+                        <li class="gap">Top 3 users will get exciting prizes and certificates</li>
+                        <li class="gap">Don't be involved in any type of malpractice</li>
+                        <li class="gap">Please be seated in a place where there is a stable internet connection</li>
+                        <li class="gap">Please read the questions carefully</li>
+                     </ol>
+
+                     <div class="btnHolder" style="margin-top: 1vmin;display: flex; justify-content: center;align-items: center;" >
+                        <button type="button" class="btn-primary"><a href="quizpart.php" style="color:white;text-decoration:none;">Let's Play</a></button>
+                     </div>
+                </div>
+            </div>
         </div>
-    </div>
-    <div class="slogan" style="display: flex; justify-content: center; align-items: center;">
-        <span style="font-size: 2.5vmin;"> ( As a member of CodeMap its a request to follow the below rules for the Quiz Event) </span>
-        </div>
-    </div>
-</div>
-
-<div class="rulesContainer container-fluid " style="padding: 5vmin;">
-
-    <div class="rulesBody" style=" box-shadow: 1px 2px 2px 3px; margin-top: 5vmin; padding-bottom: 3.5vmin;">
-
-    <ol style="margin-top: 3.5vmin; font-size: 2.75vmin;">
-        <li>&nbsp;&nbsp;  Please don't cheat from online resources and means</li>
-        <li>&nbsp;&nbsp;  Plagiarism  is strictly prohibited</li>
-        <li>&nbsp;&nbsp;  You have to complete the quiz within given time limit</li>
-        <li>&nbsp;&nbsp;  Each Question carries 10 points</li>
-        <li>&nbsp;&nbsp;  No negative marking</li>
-        <li>&nbsp;&nbsp;  Please Visit the leaderboard after end of quiz</li>
-        <li>&nbsp;&nbsp;  Please be in a place with a stable internet connection</li>
-        <li>&nbsp;&nbsp;  Be in the top 3 to win Exciting prizes</li>
-        <li>&nbsp;&nbsp;  If cheating or plagiarism found you may be terminated from CodeMap group</li>
-        <li>&nbsp;&nbsp;  Please read questions properly</li>
-    </ol>
     
-</div>
-
-</div>
-<div class="btnHolder" style="margin-top: 3vmin;display: flex; justify-content: center; align-items: center;">
-<button type="button" class="btn-primary" style="font-size:3vmin"><a href="quizpart.php" style="color:white;text-decoration:none">Let's Play</a></button>
-</div>
-
 </body>
 </html>
+
 <style>
-    .headerText{
-        height:15vmin;
-        display:flex;
-        justify-content:center;
-        align-items: center;
+    body{
+        overflow: hidden;
+        background-color:rgb(71, 161, 217) ;
     }
     .rulesContainer{
+        height:100vh;
         display: flex;
         justify-content: center;
+        align-items: center;
+    }
+    @media(max-width:800px){
+    .rulesCard{
       
+
+        background-color: #343438;
+        width:95vmin;
+        border:1px solid #343438;
+	border-radius:3vmin;
+        
     }
-    .rulesBody{
-        width: 110vmin;
+    .headerText{
+        font-size: 7vmin;
     }
+    ol li{
+        font-size: 4vmin;
+        margin-top: 1vmin;
+        color: white;
+    }
+}
+@media(min-width:801px){
+    .headerText{
+        font-size:6.5vmin;
+    }
+    .rulesCard{
+       
+
+        background-color: #343438;
+        width:125vmin;
+	
+        border:1px solid #343438;
+	border-radius:3.5vmin;
+        
+    }
+  
+    ol li{
+        font-size: 3vmin;
+      
+        color: white;
+    }
+    .gap{
+        margin-top: 1.5vmin;
+    }
+}
+
 
 </style>

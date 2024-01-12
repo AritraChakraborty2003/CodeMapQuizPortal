@@ -1,119 +1,242 @@
+<?php
+ include 'connDB.php' ;
+ session_start();
+ 
+ error_reporting(0);
+$marks=array();
+$sql = "SELECT score FROM leaderboard";
+$result = mysqli_query($conn, $sql);
+// Create an empty array 
+if (mysqli_num_rows($result) > 0) {
+    // output data of each row
+    while($row = mysqli_fetch_assoc($result)) {
+        $marks.array_push($marks,$row["score"]);
+    }
+} else {
+    echo "0 results";
+  }
+
+  rsort($marks);
+
+  $first_marks=$marks[0];
+  $second_marks=$marks[1];
+  $third_marks=$marks[2];
+  $names_array=array();
+  $uid_array=array();
+  $college_array=array();
+  $scores_array=array();
+  $cnt=1;
+  $time_array=array();
+  $sql1 = "SELECT * FROM `leaderboard` ORDER BY `score` DESC";
+  $result1 = mysqli_query($conn, $sql1);
+  if (mysqli_num_rows($result1) > 0) {
+    // output data of each row
+    while($row1 = mysqli_fetch_assoc($result1)) {
+        $names_array.array_push($names_array,$row1["name"]);
+        $uid_array.array_push($uid_array,$row1["uid"]);
+        $college_array.array_push($college_array,$row1["college"]);
+        $time_array.array_push($time_array,$row1["time"]);
+        $scores_array.array_push($scores_array,$row1["score"]);
+    }
+}
+
+
+
+ 
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Leaderboard</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-    
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 </head>
 <body>
-    <div class="header">
-        <div class="textHeader container ">
-            <p class="headerLogoText">Leaderboard</p>
-            
-        </div>
-        <div class="sloganHeader container">
-            <div class="sloganHeaderText">( The top performers will get exciting awards from TechHubBharat )</div>
-        </div>
-        <div class="iconHolder container">
-            <div class="imageHolder ">
-                <img src="images/techhubbharat.jpeg" style="max-width: 100%; max-height: 100%; object-fit: contain;">
+
+    <div class="container-fluid header">
+        <p ><span class="LeaderboardText"  style="text-align: center;margin-left: 4vmin;">Quiz Portal Leaderboard</span></p>
+    </div>
+    <p style="margin-top: -5vmin;text-align: center; color: white;">( Top performers will get exciting prizes from TechHubBharat )</p>
+
+    <div class="iconHolder">
+            <div class="imageHolder" style="height: 17vmin; width: 17vmin; border-radius: 8.5vmin;">
+                <img src="images/techhubbharat.jpeg" style="max-width:100%; max-height:100%; object-fit:contain; border-radius: 8.5vmin;">
+            </div>
+    </div>
+    <div class="leaderboardContainer">
+        <div class="cardHolder">
+        <div class="container border card">
+          
+            <div class="details">
+                <div class="prize">
+                    <div class="border_first" style="float: right; height: 16vmin; width: 16vmin; margin-top: 1vmin;">
+                        <img src="images/first.png" style="max-width:100%; max-height:100%; object-fit:contain;">
+                    </div>
+                </div>
+                    <p class="text"><span id="name1" class="name"><?php echo $names_array[0];?></span>
+                    <br>UID:&nbsp;<span id="uid1"><?php echo $uid_array[0]; ?></span>
+                    <br>Score:&nbsp;<span id="score1"><?php echo $scores_array[0];?></span>
+                    <br>College:&nbsp;<span id="clg1"><?php echo $college_array[0]; ?></span>
+                    <br>Start time(in min):&nbsp;<span id="t1"><?php echo strval(number_format(((int)$time_array[0]/60),2))?></span>
+                    </p>
             </div>
         </div>
+        <div class="container border card">
+            <div class="details">
+                <div class="prize">
+                    <div class="border_first" style="float: right; height: 16vmin; width: 16vmin; margin-top: 1vmin;">
+                        <img src="images/second.png" style="max-width:100%; max-height:100%; object-fit:contain;">
+                    </div>
+                </div>
+            <p class="text"><span id="name2" class="name"><?php echo $names_array[1];?></span>
+                <br>UID:&nbsp;<span id="uid2"><?php echo $uid_array[1]; ?></span>
+                <br>Score:&nbsp;<span id="score2"><?php echo $scores_array[1];?></span>
+                <br>College:&nbsp;<span id="clg2"><?php echo $college_array[1]; ?></span>
+                <br>Start time(in min):&nbsp;<span id="t1"><?php echo strval(number_format(((int)$time_array[1]/60),2))?></span>
+                </p>
+        </div>
+        </div>
+        <div class="container border card">
+            <div class="details">
+                <div class="prize">
+                    <div class="border_first" style="float: right; height: 16vmin; width: 16vmin; margin-top: 1vmin;">
+                        <img src="images/third.png" style="max-width:100%; max-height:100%; object-fit:contain;">
+                    </div>
+                </div>
+            <p class="text"><span id="name3" class="name"><?php echo $names_array[2];?></span>
+                <br>UID:&nbsp;<span id="uid3"><?php echo $uid_array[2]; ?></span>
+                <br>Score:&nbsp;<span id="score3"><?php echo $scores_array[2];?></span>
+                <br>College:&nbsp;<span id="clg3"><?php echo $college_array[2]; ?></span>
+                <br>Start time(in min):&nbsp;<span id="t1"><?php echo strval(number_format(((int)$time_array[2]/60),2))?></span>
+                </p>
+            </div>
+        </div>
+
+        <p class="text1" style="margin-top: 2.5vmin;font-weight: bold;font-size: 4vmin;">Your Rank:</p>
+        <div class="container border card">
+            <div class="details">
+                <div class="prize">
+                    <div class="border_first" style="float: right; height: 16vmin; width: 16vmin; margin-top: 1vmin;">
+                        <p style="color: white;font-size: 4.5vmin;font-weight: bold;">4th</p>
+                    </div>
+                </div>
+            <p class="text"><span id="name4" class="name">Aritra Chakraborty</span>
+                <br>UID:&nbsp;<span id="uid4">PL13</span>
+                <br>Score:&nbsp;<span id="score4">80</span>
+                <br>College:&nbsp;<span id="clg4">IIMT College Of Engineering</span>
+                </p>
+            </div>
+        </div>
+        </div>
     </div>
 
-    <div class="container leaderBoardBody ">
+<script>
 
-        <div class="box container">
-            <p style="float: right;margin-right: 3.5vmin; font-size: 3.5vmin;margin-top: 2.5vmin; font-weight: bold;">1st</p>
-            <p id="1st" style="margin-top: 1vmin;font-size: 4vmin;font-weight: bold;">Abhishek Kr. Pandey<br>
-            <span id="1st_email" style="margin-top: 1vmin;font-size: 2.5vmin;font-weight: 400;">pandyabhi0801@gmail.com
-            </span><br>
-            <span id="1st_college" style="margin-top: 1vmin;font-size: 2.5vmin;font-weight: 400;">IIMT college of Engineering
-            </span></p>
-        </div>
-        <div class="box container">
-            <p style="float: right;margin-right: 3.5vmin; font-size: 3.5vmin;margin-top: 2.5vmin; font-weight: bold;">2nd</p>
-            <p id="2nd" style="margin-top: 1vmin;font-size: 4vmin;font-weight: bold;">Anish Gupta<br>
-            <span  id="2nd_email" style="margin-top: 1vmin;font-size: 2.5vmin;font-weight: 400;">gputaAnish123@gmail.com
-            </span><br>
-            <span id="2nd_college" style="margin-top: 1vmin;font-size: 2.5vmin;font-weight: 400;">IIMT college of Engineering
-            </span></p>
-        </div>
-        <div class="box container">
-            <p  style="float: right;margin-right: 3.5vmin; font-size: 3.5vmin;margin-top: 2.5vmin; font-weight: bold;">3rd</p>
-            <p id="3rd" style="margin-top: 1vmin;font-size: 4vmin;font-weight: bold;">Manas Chopra<br>
-            <span id="3rd_email" style="margin-top: 1vmin;font-size: 2.5vmin;font-weight: 400;">chopramanas123@gmail.com
-            </span><br>
-            <span id="3rd_college" style="margin-top: 1vmin;font-size: 2.5vmin;font-weight: 400;">KCC College of Engineering</span>
-            </span></p>
-        </div>
-        <p style="margin-top: 5vmin; margin-left: 1.75vmin;font-weight: bold; font-size: 3.5vmin;">Your Position:</p>
-        <div class="box container ">
-            <p style="float: right;margin-right: 3.5vmin; font-size: 3.5vmin;margin-top: 2.5vmin; font-weight: bold;">1st</p>
-            <p id="user" style="margin-top: 1vmin;font-size: 4vmin;font-weight: bold;">Abhishek Kr. Pandey<br>
-            <span id="user_email" style="margin-top: 1vmin;font-size: 2.5vmin;font-weight: 400;">pandyabhi0801@gmail.com
-            </span><br>
-            <span id="user_college" style="margin-top: 1vmin;font-size: 2.5vmin;font-weight: 400;">IIMT college of Engineering
-            </span></p>
-        </div>
-    </div>
-
-
-    <div class="buttonHolder" style="display:flex;justify-content:center;align-items:center;margin-top:2.5vmin">
-        <button class="btn-primary"><a href="index.php" style="font-size:3vmin;color:white;text-decoration:none">Back</a></button>
-    </div>
+</script>
 </body>
 </html>
-<style>
-   .textHeader{
-        height:15vmin;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        font-size: 6vmin;
-        font-weight: bold;
-   }
-   .sloganHeader{
-      height: 5vmin;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-   }
-   .iconHolder{
-     height:20vmin;
-     display: flex;
-     justify-content: center;
 
-   }
-   .imageHolder{
-      height: 20vmin;
-      width: 25vmin;
-   }
-   .box{
-     border-bottom: 1.5px solid black;
-   }
-   
-   @media(max-width:800px){
-     .sloganHeader{
+<style>
+    *{
+        margin: 0px;
+        padding: 0px;
+        box-sizing: border-box;
+    }
+body{
+    background-color: rgb(71, 161, 217);
+}
+.header{
+     display: flex;
+     height:17vmin;
+     margin-top: 1.5vmin;
+     justify-content: center;
+     align-items: center;
+    }
+
+@media(max-width:800px){
+    .LeaderboardText{
+        font-size: 5vmin;
+        color: white;
+        font-family: Arial, Helvetica, sans-serif;
+        font-weight: bold;
+    }
+    .card{
+        
+        margin-top: 3vmin;
+        background-color: #3F4865  ;
+        width: 97vw;border-radius:3vmin;
+        padding: 2vmin;
+    }
+    .text1{
+        font-size: 4vmin;
+        color: white;
+    }
+    .text{
+        color: white;
+    }
+    .text{
+        color: white;
         font-size: 3vmin;
-     }
-     .box{
-        height: 20vmin;
-        width:90%;
-        margin-top: 2vmin;
-   }
-   }
-   @media(min-width:801px){
+    }
+    .name{
+        font-weight: bold;
+    }
+    .leaderboardContainer{
+    display: flex;
     
-     .box{
-        height: 20vmin;
-        width:65%;
-        margin-top: 2vmin;
-   }
-   }
+    height:97vh;
+    justify-content: center;
+    margin-top: 2.5vmin;
+    
+        }
+        .iconHolder{
+            height: 17vmin;
+            display: flex;
+            justify-content: center;
+        }
+}
+@media(min-width:801px){
+    .text{
+        color: white;
+        font-size: 3vmin;
+    }
+    .name{
+        font-weight: bold;
+        font-size:4vmin;
+        letter-spacing:0.15vmin;
+    }
+    .LeaderboardText{
+        font-size: 5vmin;
+        color: white;
+        font-family: Arial, Helvetica, sans-serif;
+        font-weight: bold;
+    }
+    .text1{
+        font-size: 4vmin;
+        color: white;
+    }
+    .card{
+       
+        margin-top: 3vmin; background-color: #3F4865  ;
+        width:60vw;border-radius:3vmin;
+        padding: 1.5vmin;
+    }
+    .leaderboardContainer{
+        display: flex;
+    
+        height:97vh;
+     justify-content: center;
+  
+}
+.iconHolder{
+            height: 17vmin;
+            display: flex;
+            justify-content: center;
+        }
+}
 </style>

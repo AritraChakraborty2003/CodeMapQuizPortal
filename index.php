@@ -7,107 +7,161 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-    
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
-</head>
+    <title>Form</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    </head>
 <body>
-      <div class="cardContainer container-fluid border">
-            <div class=" container-fluid card">
-                  <div class="textHeader">
-                     <p style="text-align: center;"><span style="font-weight: bold;" class="welcomeText">Welcome to</span> <br><span style="font-weight: bold;" class="platName">Geeks Stage</span> by <span style="font-weight: bold; " class="gName">CodeMap</span> 
-                     <br> ( In association with <span style="font-weight: bold; letter-spacing: 0.10vmin;" class="companyName">TechHubBharat</span> )</p>
-                  </div>
-                  <form method="post" action="rulesDB.php">
-                  <div class="inputFields">
-                     <input type="text" name="name" id="name" class="name inp" placeholder="Enter your name..." required>
-                     <input type="email" name="email" id="email" class="email inp" placeholder="Enter your email..." required>
-                     <input type="text" name="college" id="college" class="college inp" placeholder="Enter your college..." required>
-                     <input type="text" name="branch" id="branch" class="branch inp" placeholder="Enter your branch" required>
-                     <p style="margin-top: 3vmin;">Please choose your favourite programming Language
-                        <br>
-                     <input type="radio" id="C" name="fav_language" value="C" checked>
-                     <label for="C">C</label><br>
-                     <input type="radio" id="Java" name="fav_language" value="Java">
-                     <label for="Java">Java</label><br>
-                     <input type="radio" id="C++" name="fav_language" value="C++">
-                     <label for="C++">C++</label><br>
-                     <input type="radio" id="python" name="fav_language" value="python">
-                     <label for="python">python</label><br>
-                     <input type="radio" id="frontend" name="fav_language" value="frontend">
-                     <label for="frontend">Frontend</label><br>
-                     <div class="btnHolder" style="display: flex; justify-content: center; align-items: center; margin-top: 3vmin;">
-                     <input type="submit" value="submit" class="btn btn-primary">
+    <div class="container-fluid formHolder">
+        <div class="card">
+            <p class="WelcomeHeader">Welcome To<br>
+               <span class="sloganHeader">Geek's Stage</span></p>
+               <form method="post" action="rulesDB.php">
+                <div class="inputFields">
+                   <input type="text" name="name" id="name" class="name inp" placeholder="Enter your name..." required>
+                   <input type="email" name="email" id="email" class="email inp" placeholder="Enter your email..." required>
+                   <input type="text" name="college" id="college" class="college inp" placeholder="Enter your college..." required>
+                     <input type="text" name="uid" id="uid" class="uid inp" placeholder="Enter your uid..." required>
+                   <div class="languageSelection">
+                   <p style="margin-top: 3vmin;">Please choose your favourite programming Language
+                      <br>
+                    <div class="radioInput">
+                   <input type="radio" id="C" name="fav_language" value="C" checked>
+                   <label for="C">C</label><br>
+                   <input type="radio" id="Java" name="fav_language" value="Java">
+                   <label for="Java">Java</label><br>
+                   <input type="radio" id="C++" name="fav_language" value="C++">
+                   <label for="C++">C++</label><br>
+                   <input type="radio" id="python" name="fav_language" value="python">
+                   <label for="python">python</label><br>
+                   <input type="radio" id="frontend" name="fav_language" value="frontend">
+                   <label for="frontend">Frontend</label><br>
+                   <div class="btnHolder" style="display: flex; justify-content: center; align-items: center; margin-top: 3vmin;">
+                   <input type="submit" value="submit" class="btn btn-primary">
+                   <button class="btn btn-primary" style="margin-left:3vmin">
+                     <a href="waiting.php" style="color:white;text-decoration:none">Leaderboard</a>
+                   </button>
                      </p>
-                     </div>
-                    </div>
-                    </form>
+                   
+
+                  
+                   
+                   </p>
+                   </div>
+                  </div>
+                
+                  </form>
+                  </div>
+                  </div>
             </div>
-      </div>
+    </div>  
 </body>
 </html>
-
-
-
 <style>
-    .cardContainer{
-        height: 100vh;
-        width: 100vw;
+    body{
+        background-color: rgb(71, 161, 217);
+    }
+    .formHolder{
+        height:100vh;
         display: flex;
         justify-content: center;
         align-items: center;
+      
     }
+    @media(min-width:801px){
     .card{
-        width: 80vmin;
-        box-shadow: 5px 3px 3px 5px;
-     
+        padding-bottom: 2.5vmin;
+        width:73vmin;
+        background-color: #343438;
+        border:1px solid rgb(37, 35, 35);
+        border-radius: 1vmin;
+        opacity: 0.90;
     }
-    .textHeader{
-        margin-top: 3vmin;
+    .WelcomeHeader{
+        color: white;
+        font-size: 5.5vmin;
+        text-align: center;
     }
-    .inputFields{
-        padding: 3vmin;
+    .sloganHeader{
+        color: white;
+        font-size: 5.65vmin;
+        font-weight: bold;
+        text-align: center;
     }
-
     .inp{
-        width: 100%;
-
-        margin-top: 2.5vmin;
-        padding: 1.5vmin;
-    }
-    @media(min-width:800px){
-    .welcomeText{
-        font-size: 5vmin;
-    }
-    .gName{
-        font-size: 2.75vmin;
-    }
-    .platName{
-        font-size: 2.75vmin; 
-    }
-    .compName{
-        font-size: 2.5vmin;
-    }
-}
-@media(max-width:800px){
-    .welcomeText{
-        font-size: 7vmin;
-    }
-    .gName{
-        font-size: 3.75vmin;
-    }
-    .platName{
-        font-size: 3.75vmin; 
-    }
-    .compName{
-        font-size: 3.5vmin;
-    }
-}
-
-
+        width:95%;
+        background-color: #343438;
+        border-bottom: 1px solid white;
+        margin-left: 2vmin;
     
-  
+
+        margin-top: 2vmin;
+    }
+    input[type="text"], input[type="password"],input[type="email"], textarea {
+     border: none;
+     color: white;
+    outline: none;
+    border-bottom: 1px solid #ccc; /* You can adjust the color and thickness of the outline */
+        }
+    .languageSelection{
+        font-size: 2.7vmin;
+        margin-left: 1.75vmin;
+        color: white;
+    }
+    }
+
+    @media(max-width:800px){
+        .WelcomeHeader{
+        color: white;
+        font-size: 6.5vmin;
+        text-align: center;
+         }
+        .card{
+        padding-bottom: 2.5vmin;
+        width:90vmin;
+        background-color:#343438 ;
+        border:1px solid rgb(37, 36, 36);
+        border-radius: 5vmin;
+        opacity: 0.90;
+        }
+        .WelcomeHeader{
+        color: white;
+        font-size: 7vmin;
+        margin-top: 3vmin;
+        text-align: center;
+    }
+    .sloganHeader{
+        color: white;
+        font-size: 7.5vmin;
+        font-weight: bold;
+        text-align: center;
+    }
+    .inp{
+        width:95%;
+        background-color: #343438;
+        border-bottom: 1px solid white;
+        margin-left: 2vmin;
+    
+
+        
+    }
+    input[type="text"], input[type="password"],input[type="email"], textarea {
+      border: none;
+       color: white;
+       margin-top: 4.25vmin;
+        outline: none;
+        border-bottom: 1px solid #ccc; /* You can adjust the color and thickness of the outline */
+        }
+    .languageSelection{
+        font-size: 4vmin;
+        margin-left: 1.75vmin;
+        color: white;
+    }
+    .radioInput{
+        margin-top: 1.45vmin;
+    }
+
+    }
 </style>
