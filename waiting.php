@@ -21,7 +21,7 @@
 
         <div class="timerContainer" style="display: flex;justify-content: center;height:17vmin;margin-top: 4vmin;">
                 <div class="timeBox" style="display: flex; justify-content: center; align-items: center;height:17vmin;width:17vmin; border: 5px solid white;border-radius: 8.5vmin;">
-                        <p id="timerBox">20</p>
+                        <p id="timerBox">calc</p>
                 </div>
         </div>
         <div class="btnHolder" style="margin-top:2.5vmin;display:flex;justify-content:center;align-items:center">
@@ -33,25 +33,37 @@
     
 </body>
 <script>
-var time=20;
+
+let checkcall=setInterval(() => {
+            
+            if(date1.getMinutes()>=58){
+                location.href='personal_score.php';
+            }
+
+            if(date1.getMinutes()<58){
+                location.href='exit.php';
+            }
+       }, 100);
 const timer=document.getElementById("timerBox");
 
-
-    
+const date1 = new Date();
+var time=26-date1.getMinutes();
+timer.innerHTML=time;
 function timeHandler(){
-   const date = new Date();
-   console.log(date.getMinutes())
-   if(date.getMinutes()==11){
-        location.href='leaderboard.php';
-   }    
-   if(time==0){
-        location.href='leaderboard.php';
-   }
    time--;
    timer.innerHTML=time;
-}
+   if(date1.getMinutes()>=42){
+        location.href='personal_score.php';
+   }    
+   if(time==0){
+        location.href='personal_score.php';
+   }
 
-       let timeCall=setInterval(timeHandler,5000);
+  }
+
+
+       let timeCall=setInterval(timeHandler,60000);
+     
      
 </script>
 </html>

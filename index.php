@@ -28,11 +28,11 @@
                    <p style="margin-top: 3vmin;">Please choose your favourite programming Language
                       <br>
                     <div class="radioInput">
-                   <input type="radio" id="C" name="fav_language" value="C" checked>
+                   <input type="radio" id="C" name="fav_language" value="c" checked>
                    <label for="C">C</label><br>
-                   <input type="radio" id="Java" name="fav_language" value="Java">
+                   <input type="radio" id="Java" name="fav_language" value="java">
                    <label for="Java">Java</label><br>
-                   <input type="radio" id="C++" name="fav_language" value="C++">
+                   <input type="radio" id="C++" name="fav_language" value="cplusplus">
                    <label for="C++">C++</label><br>
                    <input type="radio" id="python" name="fav_language" value="python">
                    <label for="python">python</label><br>

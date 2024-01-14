@@ -3,16 +3,16 @@
  session_start();
  
  error_reporting(0);
-$marks=array();
-$sql = "SELECT score FROM leaderboard";
-$result = mysqli_query($conn, $sql);
-// Create an empty array 
-if (mysqli_num_rows($result) > 0) {
+ $marks=array();
+ $sql = "SELECT score FROM leaderboard";
+ $result = mysqli_query($conn, $sql);
+ // Create an empty array 
+ if (mysqli_num_rows($result) > 0) {
     // output data of each row
     while($row = mysqli_fetch_assoc($result)) {
         $marks.array_push($marks,$row["score"]);
     }
-} else {
+ } else {
     echo "0 results";
   }
 
@@ -39,6 +39,26 @@ if (mysqli_num_rows($result) > 0) {
         $scores_array.array_push($scores_array,$row1["score"]);
     }
 }
+$uid_user=$_POST["uid"];
+$details_array_user=array();
+$rank_user=array_search($uid_user,$uid_array)+1;
+$sql2 = "SELECT * FROM leaderboard WHERE uid='$uid_user'";
+$result2 = mysqli_query($conn, $sql2);
+if (mysqli_num_rows($result2) > 0) {
+    // output data of each row
+    while($row2 = mysqli_fetch_assoc($result2)){
+        $details_array_user.array_push($details_array_user,$row2["name"]);
+        //0
+        $details_array_user.array_push($details_array_user,$row2["uid"]);
+        //1
+        $details_array_user.array_push($details_array_user,$row2["college"]);
+        //2
+        $details_array_user.array_push($details_array_user,$row2["time"]);
+        //3
+        $details_array_user.array_push($details_array_user,$row2["score"]);
+        //4
+    } 
+}
 
 
 
@@ -57,6 +77,11 @@ if (mysqli_num_rows($result) > 0) {
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 </head>
 <body>
+<div class="btnHolder" style="margin-top:2.5vmin;display:flex;justify-content:right;align-items:center;margin-right:3vmin">
+           
+           <button class="btn btn-primary"><a href="exit.php" style="color:white;text-decoration:none">Back</a></button>
+           </div>
+        
 
     <div class="container-fluid header">
         <p ><span class="LeaderboardText"  style="text-align: center;margin-left: 4vmin;">Quiz Portal Leaderboard</span></p>
@@ -122,22 +147,22 @@ if (mysqli_num_rows($result) > 0) {
             <div class="details">
                 <div class="prize">
                     <div class="border_first" style="float: right; height: 16vmin; width: 16vmin; margin-top: 1vmin;">
-                        <p style="color: white;font-size: 4.5vmin;font-weight: bold;">4th</p>
+                        <p style="color: white;font-size: 4.5vmin;font-weight: bold;">Rank:&nbsp;<?php echo $rank_user ?></p>
                     </div>
                 </div>
-            <p class="text"><span id="name4" class="name">Aritra Chakraborty</span>
-                <br>UID:&nbsp;<span id="uid4">PL13</span>
-                <br>Score:&nbsp;<span id="score4">80</span>
-                <br>College:&nbsp;<span id="clg4">IIMT College Of Engineering</span>
-                </p>
+            <p class="text"><span id="name4" class="name"><?php echo $details_array_user[0] ?></span>
+                <br>UID:&nbsp;<span id="uid4"><?php echo $details_array_user[1] ?></span>
+                <br>Score:&nbsp;<span id="score4"><?php echo $details_array_user[4] ?></span>
+                <br>College:&nbsp;<span id="clg4"><?php echo $details_array_user[2] ?></span>
+                <br>Start time(in min):&nbsp;<span id="t1"><?php echo strval(number_format(((int)$time_array[3]/60),2))?></span>   
+            </p>
             </div>
         </div>
         </div>
     </div>
 
-<script>
-
-</script>
+    
+   
 </body>
 </html>
 
